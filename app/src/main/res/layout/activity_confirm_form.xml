@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/confirmRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ConfirmForm">
 
     <LinearLayout
-        android:id="@+id/logoContainer"
+        android:id="@+id/confirmLogoContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/confirmLogoIcon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
@@ -27,11 +28,13 @@
             android:src="@drawable/ic_logo" />
 
         <LinearLayout
+            android:id="@+id/confirmBrandContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/confirmMedicareText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/medicare"
@@ -40,6 +43,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/confirmPlusText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -50,6 +54,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/confirmSloganText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -59,7 +64,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/passwordContainer"
+        android:id="@+id/confirmPasswordContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
@@ -67,9 +72,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoContainer">
+        app:layout_constraintTop_toBottomOf="@id/confirmLogoContainer">
 
         <TextView
+            android:id="@+id/passwordLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -79,6 +85,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/passwordCard"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:cardBackgroundColor="@color/input_bg"
@@ -87,6 +94,7 @@
             app:strokeWidth="0dp">
 
             <LinearLayout
+                android:id="@+id/passwordInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -94,12 +102,14 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/passwordIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_lock"
                     android:contentDescription="Lock Icon" />
 
                 <EditText
+                    android:id="@+id/passwordInput"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
@@ -113,6 +123,7 @@
                     android:importantForAutofill="no" />
 
                 <ImageView
+                    android:id="@+id/passwordVisibilityIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_visibility"
@@ -122,7 +133,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/confirmPasswordContainer"
+        android:id="@+id/confirmPasswordFieldsContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
@@ -130,9 +141,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordContainer">
+        app:layout_constraintTop_toBottomOf="@id/confirmPasswordContainer">
 
         <TextView
+            android:id="@+id/confirmPasswordLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -142,6 +154,7 @@
             android:textSize="14sp" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/confirmPasswordCard"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:cardBackgroundColor="@color/input_bg"
@@ -150,6 +163,7 @@
             app:strokeWidth="0dp">
 
             <LinearLayout
+                android:id="@+id/confirmPasswordInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
@@ -157,12 +171,14 @@
                 android:paddingHorizontal="16dp">
 
                 <ImageView
+                    android:id="@+id/confirmPasswordIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_lock"
                     android:contentDescription="Lock Icon" />
 
                 <EditText
+                    android:id="@+id/confirmPasswordInput"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
@@ -176,6 +192,7 @@
                     android:importantForAutofill="no" />
 
                 <ImageView
+                    android:id="@+id/confirmPasswordVisibilityIcon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/ic_visibility"
@@ -200,9 +217,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmPasswordContainer" />
+        app:layout_constraintTop_toBottomOf="@id/confirmPasswordFieldsContainer" />
 
     <LinearLayout
+        android:id="@+id/confirmFooterContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -213,6 +231,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/confirmFooterGoodHealth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/good_health"
@@ -220,6 +239,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/confirmFooterBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
