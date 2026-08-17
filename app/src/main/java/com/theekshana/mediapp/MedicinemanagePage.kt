@@ -19,6 +19,7 @@ class MedicinemanagePage : AppCompatActivity() {
     
     private lateinit var medNameInput: EditText
     private lateinit var timeInput: EditText
+    private lateinit var dateInput: EditText
     private lateinit var updateButton: AppCompatButton
     private lateinit var cancelButton: AppCompatButton
     
@@ -36,44 +37,45 @@ class MedicinemanagePage : AppCompatActivity() {
         }
 
         repository = MedicineRepository(this)
-        medicinesList = repository.getMedicines()
 
         medNameInput = findViewById(R.id.medNameInput)
         timeInput = findViewById(R.id.timeInput)
+        dateInput = findViewById(R.id.dateInput)
         updateButton = findViewById(R.id.updateButton)
         cancelButton = findViewById(R.id.cancelButton)
 
         setupRecyclerView()
-
-        // In this UI, the 'updateButton' acts as both Add and Update based on state
-        // To strictly follow the professors instruction of "Add New Medicine form creates a new record"
-        // I will implement the logic where if editingMedicineId is null, it's a CREATE.
         
+        // Observe changes from Firebase
+        repository.observeMedicines { medicines ->
+            medicinesList.clear()
+            medicinesList.addAll(medicines)
+            adapter.notifyDataSetChanged()
+        }
+
         updateButton.setOnClickListener {
             val name = medNameInput.text.toString().trim()
             val time = timeInput.text.toString().trim()
+            val date = dateInput.text.toString().trim()
 
-            if (name.isNotEmpty() && time.isNotEmpty()) {
-                if (editingMedicineId == null) {
-                    // CREATE
-                    val newMed = Medicine(name = name, time = time)
-                    medicinesList.add(newMed)
-                    Toast.makeText(this, "Medicine Added", Toast.LENGTH_SHORT).show()
+            if (name.isNotEmpty() && time.isNotEmpty() && date.isNotEmpty()) {
+                val medicineToSave = if (editingMedicineId == null) {
+                    Medicine(name = name, time = time, date = date)
                 } else {
-                    // UPDATE
-                    val index = medicinesList.indexOfFirst { it.id == editingMedicineId }
-                    if (index != -1) {
-                        medicinesList[index].name = name
-                        medicinesList[index].time = time
-                        Toast.makeText(this, "Medicine Updated", Toast.LENGTH_SHORT).show()
-                    }
-                    editingMedicineId = null
-                    updateButton.text = getString(R.string.update) // Reset text if changed
+                    Medicine(id = editingMedicineId!!, name = name, time = time, date = date)
                 }
-                
-                repository.saveMedicines(medicinesList)
-                adapter.notifyDataSetChanged()
-                clearInputs()
+
+                repository.saveMedicine(medicineToSave) { success ->
+                    if (success) {
+                        val message = if (editingMedicineId == null) "Medicine Added" else "Medicine Updated"
+                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        clearInputs()
+                        editingMedicineId = null
+                        updateButton.text = getString(R.string.update)
+                    } else {
+                        Toast.makeText(this, "Failed to save medicine", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
@@ -82,6 +84,7 @@ class MedicinemanagePage : AppCompatActivity() {
         cancelButton.setOnClickListener {
             clearInputs()
             editingMedicineId = null
+            updateButton.text = getString(R.string.update)
         }
     }
 
@@ -91,18 +94,20 @@ class MedicinemanagePage : AppCompatActivity() {
         
         adapter = MedicineAdapter(medicinesList, 
             onEditClick = { medicine ->
-                // POPULATE FORM FOR MODIFICATION (Update)
                 medNameInput.setText(medicine.name)
                 timeInput.setText(medicine.time)
+                dateInput.setText(medicine.date)
                 editingMedicineId = medicine.id
-                updateButton.text = "Save" // Change text to indicate editing
+                updateButton.text = getString(R.string.save)
             },
             onDeleteClick = { medicine ->
-                // DELETE
-                medicinesList.remove(medicine)
-                repository.saveMedicines(medicinesList)
-                adapter.notifyDataSetChanged()
-                Toast.makeText(this, "Medicine Deleted", Toast.LENGTH_SHORT).show()
+                repository.deleteMedicine(medicine.id) { success ->
+                    if (success) {
+                        Toast.makeText(this, "Medicine Deleted", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Failed to delete medicine", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         )
         recyclerView.adapter = adapter
@@ -111,5 +116,6 @@ class MedicinemanagePage : AppCompatActivity() {
     private fun clearInputs() {
         medNameInput.text.clear()
         timeInput.text.clear()
+        dateInput.text.clear()
     }
 }

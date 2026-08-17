@@ -16,6 +16,7 @@ class MedicineAdapter(
     class MedicineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val medName: TextView = itemView.findViewById(R.id.medName)
         val medTime: TextView = itemView.findViewById(R.id.medTime)
+        val medDate: TextView = itemView.findViewById(R.id.medDate)
         val editBtn: ImageButton = itemView.findViewById(R.id.editBtn)
         val deleteBtn: ImageButton = itemView.findViewById(R.id.deleteBtn)
     }
@@ -29,6 +30,7 @@ class MedicineAdapter(
         val medicine = medicines[position]
         holder.medName.text = medicine.name
         holder.medTime.text = medicine.time
+        holder.medDate.text = medicine.date
         
         holder.editBtn.setOnClickListener { onEditClick(medicine) }
         holder.deleteBtn.setOnClickListener { onDeleteClick(medicine) }

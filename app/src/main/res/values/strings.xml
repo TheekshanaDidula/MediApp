@@ -30,13 +30,12 @@
     <string name="how_can_help">How can we help you today?</string>
     <string name="doctor_appointment">Doctor Appointment</string>
     <string name="book_consultation">Book your consultation</string>
-    <string name="medisine_manager">Medisine Manager</string>
     <string name="manage_medications">Manage your medications</string>
     <string name="my_medicines">My Medicines</string>
     <string name="add_medicine">Add Medicine</string>
     <string name="prescriptions">Prescriptions</string>
     <string name="medicine_list">Medicine List</string>
-    <string name="medicine_manager">Medicine manager</string>
+    <string name="medicine_manager">Medicine Manager</string>
     <string name="add_new_medicine">Add New Medicine</string>
     <string name="medicine_name">Medicine Name</string>
     <string name="time_label">Time</string>
@@ -46,6 +45,8 @@
     <string name="time_8am">08:00 AM</string>
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>
+    <string name="date_label">Date</string>
+    <string name="date_placeholder">YYYY-MM-DD</string>
     <string name="enter_medicine_name">Enter medicine name</string>
     <string name="add_plus">+ Add</string>
     <string name="select_doctor">Select Doctor</string>

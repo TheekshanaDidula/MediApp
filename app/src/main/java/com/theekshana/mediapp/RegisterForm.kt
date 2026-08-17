@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -37,26 +38,14 @@ class RegisterForm : AppCompatActivity() {
             val email = emailInput.text.toString().trim()
             val mobile = mobileInput.text.toString().trim()
 
-            var isValid = true
-
-            if (username.isEmpty()) {
-                usernameInput.error = "Please enter valid details"
-                isValid = false
-            }
-
-            if (email.isEmpty()) {
-                emailInput.error = "Please enter valid details"
-                isValid = false
-            }
-
-            if (mobile.isEmpty()) {
-                mobileInput.error = "Please enter valid details"
-                isValid = false
-            }
-
-            if (isValid) {
+            if (username.isNotEmpty() && email.isNotEmpty() && mobile.isNotEmpty()) {
                 val intent = Intent(this, OTPForm::class.java)
+                intent.putExtra("USERNAME", username)
+                intent.putExtra("EMAIL", email)
+                intent.putExtra("MOBILE", mobile)
                 startActivity(intent)
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }

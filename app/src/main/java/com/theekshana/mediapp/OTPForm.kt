@@ -20,15 +20,22 @@ class OTPForm : AppCompatActivity() {
             insets
         }
 
+        val username = intent.getStringExtra("USERNAME") ?: ""
+        val email = intent.getStringExtra("EMAIL") ?: ""
+        val mobile = intent.getStringExtra("MOBILE") ?: ""
+
         val footerBack = findViewById<TextView>(R.id.footerBack)
         footerBack.setOnClickListener {
-            val intent = Intent(this, RegisterForm::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val confirmButton = findViewById<Button>(R.id.confirmButton)
         confirmButton.setOnClickListener {
-            val intent = Intent(this, LoginForm::class.java)
+            // After OTP confirmation, go to ConfirmForm (Password entry)
+            val intent = Intent(this, ConfirmForm::class.java)
+            intent.putExtra("USERNAME", username)
+            intent.putExtra("EMAIL", email)
+            intent.putExtra("MOBILE", mobile)
             startActivity(intent)
         }
     }

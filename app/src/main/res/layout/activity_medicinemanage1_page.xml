@@ -150,6 +150,27 @@
                 android:importantForAutofill="no"
                 android:inputType="time" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/date_label"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/medicineDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/date_placeholder"
+                android:paddingHorizontal="16dp"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:importantForAutofill="no"
+                android:inputType="date" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "749638407431",
+    "project_id": "mediapp-80f45",
+    "storage_bucket": "mediapp-80f45.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749638407431:android:a42e461dcf847f7541e1a2",
+        "android_client_info": {
+          "package_name": "com.theekshana.mediapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq5YPv10drDDugEbtli6aBu3xmZ9F8a5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

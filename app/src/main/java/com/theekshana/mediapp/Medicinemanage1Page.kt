@@ -18,6 +18,7 @@ class Medicinemanage1Page : AppCompatActivity() {
 
     private lateinit var medicineNameInput: EditText
     private lateinit var medicineTimeInput: EditText
+    private lateinit var medicineDateInput: EditText
     private lateinit var addButton: AppCompatButton
     private lateinit var updateButton: AppCompatButton
     private lateinit var medicinesRecyclerView: RecyclerView
@@ -48,52 +49,61 @@ class Medicinemanage1Page : AppCompatActivity() {
         // Initialize Views
         medicineNameInput = findViewById(R.id.medicineNameInput)
         medicineTimeInput = findViewById(R.id.medicineTimeInput)
+        medicineDateInput = findViewById(R.id.medicineDateInput)
         addButton = findViewById(R.id.addButton)
         updateButton = findViewById(R.id.updateButton)
         medicinesRecyclerView = findViewById(R.id.medicinesRecyclerView)
 
         repository = MedicineRepository(this)
-        medicinesList = repository.getMedicines()
 
         setupRecyclerView()
+
+        // Observe real-time changes from Firebase
+        repository.observeMedicines { medicines ->
+            medicinesList.clear()
+            medicinesList.addAll(medicines)
+            adapter.notifyDataSetChanged()
+        }
 
         addButton.setOnClickListener {
             val name = medicineNameInput.text.toString().trim()
             val time = medicineTimeInput.text.toString().trim()
+            val date = medicineDateInput.text.toString().trim()
 
-            if (name.isNotEmpty() && time.isNotEmpty()) {
-                val newMedicine = Medicine(name = name, time = time)
-                medicinesList.add(newMedicine)
-                repository.saveMedicines(medicinesList)
-                adapter.notifyDataSetChanged()
-                
-                medicineNameInput.text.clear()
-                medicineTimeInput.text.clear()
-                Toast.makeText(this, "Medicine added successfully", Toast.LENGTH_SHORT).show()
+            if (name.isNotEmpty() && time.isNotEmpty() && date.isNotEmpty()) {
+                val newMedicine = Medicine(name = name, time = time, date = date)
+                repository.saveMedicine(newMedicine) { success ->
+                    if (success) {
+                        resetForm()
+                        Toast.makeText(this, "Medicine added successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Failed to add medicine", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
-                Toast.makeText(this, "Please enter medicine name and time", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
 
         updateButton.setOnClickListener {
             val name = medicineNameInput.text.toString().trim()
             val time = medicineTimeInput.text.toString().trim()
+            val date = medicineDateInput.text.toString().trim()
 
-            if (editingMedicineId != null && name.isNotEmpty() && time.isNotEmpty()) {
-                val index = medicinesList.indexOfFirst { it.id == editingMedicineId }
-                if (index != -1) {
-                    medicinesList[index].name = name
-                    medicinesList[index].time = time
-                    repository.saveMedicines(medicinesList)
-                    adapter.notifyDataSetChanged()
-                    
-                    resetForm()
-                    Toast.makeText(this, "Medicine updated successfully", Toast.LENGTH_SHORT).show()
+            if (editingMedicineId != null && name.isNotEmpty() && time.isNotEmpty() && date.isNotEmpty()) {
+                val updatedMedicine = Medicine(id = editingMedicineId!!, name = name, time = time, date = date)
+                repository.saveMedicine(updatedMedicine) { success ->
+                    if (success) {
+                        resetForm()
+                        Toast.makeText(this, "Medicine updated successfully", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Failed to update medicine", Toast.LENGTH_SHORT).show()
+                    }
                 }
             } else if (editingMedicineId == null) {
                 Toast.makeText(this, "Select a medicine to update", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Please enter medicine name and time", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -103,6 +113,7 @@ class Medicinemanage1Page : AppCompatActivity() {
             onEditClick = { medicine ->
                 medicineNameInput.setText(medicine.name)
                 medicineTimeInput.setText(medicine.time)
+                medicineDateInput.setText(medicine.date)
                 editingMedicineId = medicine.id
                 
                 // Highlight update button
@@ -110,12 +121,15 @@ class Medicinemanage1Page : AppCompatActivity() {
                 updateButton.setTextColor(ContextCompat.getColor(this, R.color.white))
             },
             onDeleteClick = { medicine ->
-                medicinesList.remove(medicine)
-                repository.saveMedicines(medicinesList)
-                adapter.notifyDataSetChanged()
-                Toast.makeText(this, "Medicine deleted", Toast.LENGTH_SHORT).show()
-                if (editingMedicineId == medicine.id) {
-                    resetForm()
+                repository.deleteMedicine(medicine.id) { success ->
+                    if (success) {
+                        Toast.makeText(this, "Medicine deleted", Toast.LENGTH_SHORT).show()
+                        if (editingMedicineId == medicine.id) {
+                            resetForm()
+                        }
+                    } else {
+                        Toast.makeText(this, "Failed to delete medicine", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         )
@@ -126,6 +140,7 @@ class Medicinemanage1Page : AppCompatActivity() {
     private fun resetForm() {
         medicineNameInput.text.clear()
         medicineTimeInput.text.clear()
+        medicineDateInput.text.clear()
         editingMedicineId = null
         updateButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.disabled_btn_bg)
         updateButton.setTextColor(ContextCompat.getColor(this, R.color.grey_text))
