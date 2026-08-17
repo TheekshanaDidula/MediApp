@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/medicinemanage1Root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -115,6 +115,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/medicineNameInput"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -135,6 +136,7 @@
                 android:textSize="12sp" />
 
             <EditText
+                android:id="@+id/medicineTimeInput"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -194,214 +196,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addMedicineCard" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/medicinesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:paddingBottom="24dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myMedicinesTitle">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="24dp">
-
-            <!-- Medicine Item 1 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="12dp"
-                app:cardBackgroundColor="#F9F9F9"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="16dp">
-
-                    <View
-                        android:id="@+id/iconBg1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/back_button_bg"
-                        android:backgroundTint="#4DB6AC"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_medicine_bottle"
-                        app:layout_constraintBottom_toBottomOf="@id/iconBg1"
-                        app:layout_constraintEnd_toEndOf="@id/iconBg1"
-                        app:layout_constraintStart_toStartOf="@id/iconBg1"
-                        app:layout_constraintTop_toTopOf="@id/iconBg1"
-                        android:contentDescription="@string/medicine_manager" />
-
-                    <TextView
-                        android:id="@+id/medName1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/vitamin_c"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/iconBg1"
-                        app:layout_constraintTop_toTopOf="@id/iconBg1" />
-
-                    <ImageView
-                        android:id="@+id/clockIcon1"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_clock"
-                        app:layout_constraintStart_toStartOf="@id/medName1"
-                        app:layout_constraintTop_toBottomOf="@id/medName1"
-                        android:contentDescription="@string/time_label" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/time_8am"
-                        android:textColor="@color/grey_text"
-                        android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@id/clockIcon1"
-                        app:layout_constraintStart_toEndOf="@id/clockIcon1"
-                        app:layout_constraintTop_toTopOf="@id/clockIcon1" />
-
-                    <ImageButton
-                        android:id="@+id/deleteBtn1"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/edittext_bg"
-                        android:backgroundTint="@color/delete_bg"
-                        android:src="@drawable/ic_delete"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/cancel" />
-
-                    <ImageButton
-                        android:id="@+id/editBtn1"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="@drawable/edittext_bg"
-                        android:backgroundTint="@color/update_btn"
-                        android:src="@drawable/ic_edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deleteBtn1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/update" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Medicine Item 2 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="12dp"
-                app:cardBackgroundColor="#F9F9F9"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
-                app:strokeWidth="0dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="16dp">
-
-                    <View
-                        android:id="@+id/iconBg2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:background="@drawable/back_button_bg"
-                        android:backgroundTint="#4DB6AC"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/ic_medicine_bottle"
-                        app:layout_constraintBottom_toBottomOf="@id/iconBg2"
-                        app:layout_constraintEnd_toEndOf="@id/iconBg2"
-                        app:layout_constraintStart_toStartOf="@id/iconBg2"
-                        app:layout_constraintTop_toTopOf="@id/iconBg2"
-                        android:contentDescription="@string/medicine_manager" />
-
-                    <TextView
-                        android:id="@+id/medName2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/penadol"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/iconBg2"
-                        app:layout_constraintTop_toTopOf="@id/iconBg2" />
-
-                    <ImageView
-                        android:id="@+id/clockIcon2"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginTop="4dp"
-                        android:src="@drawable/ic_clock"
-                        app:layout_constraintStart_toStartOf="@id/medName2"
-                        app:layout_constraintTop_toBottomOf="@id/medName2"
-                        android:contentDescription="@string/time_label" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="@string/time_8am"
-                        android:textColor="@color/grey_text"
-                        android:textSize="11sp"
-                        app:layout_constraintBottom_toBottomOf="@id/clockIcon2"
-                        app:layout_constraintStart_toEndOf="@id/clockIcon2"
-                        app:layout_constraintTop_toTopOf="@id/clockIcon2" />
-
-                    <ImageButton
-                        android:id="@+id/deleteBtn2"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/edittext_bg"
-                        android:backgroundTint="@color/delete_bg"
-                        android:src="@drawable/ic_delete"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/cancel" />
-
-                    <ImageButton
-                        android:id="@+id/editBtn2"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="@drawable/edittext_bg"
-                        android:backgroundTint="@color/update_btn"
-                        android:src="@drawable/ic_edit"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deleteBtn2"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:contentDescription="@string/update" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-        </LinearLayout>
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@id/myMedicinesTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

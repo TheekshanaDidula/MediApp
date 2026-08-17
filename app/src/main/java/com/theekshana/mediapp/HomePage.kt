@@ -1,10 +1,12 @@
 package com.theekshana.mediapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.card.MaterialCardView
 
 class HomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +17,12 @@ class HomePage : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val medicineCard = findViewById<MaterialCardView>(R.id.medicineCard)
+        medicineCard.setOnClickListener {
+            val intent = Intent(this, Medicinemanage1Page::class.java)
+            startActivity(intent)
         }
     }
 }

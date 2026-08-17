@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/registerRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -146,6 +146,7 @@
                     android:contentDescription="User Icon" />
 
                 <EditText
+                    android:id="@+id/usernameInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
@@ -201,6 +202,7 @@
                     android:contentDescription="Person Icon" />
 
                 <EditText
+                    android:id="@+id/emailInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"
@@ -256,6 +258,7 @@
                     android:contentDescription="Mobile Icon" />
 
                 <EditText
+                    android:id="@+id/mobileInput"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="12dp"

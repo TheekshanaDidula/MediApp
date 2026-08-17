@@ -1,6 +1,10 @@
 package com.theekshana.mediapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +15,28 @@ class LoginForm : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login_form)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.loginRoot)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val signUpLink = findViewById<TextView>(R.id.footerSignUpLink)
+        signUpLink.setOnClickListener {
+            val intent = Intent(this, RegisterForm::class.java)
+            startActivity(intent)
+        }
+
+        val backButton = findViewById<FrameLayout>(R.id.backButton)
+        backButton.setOnClickListener {
+            val intent = Intent(this, RegisterForm::class.java)
+            startActivity(intent)
+        }
+
+        val loginButton = findViewById<Button>(R.id.loginButton)
+        loginButton.setOnClickListener {
+            val intent = Intent(this, HomePage::class.java)
+            startActivity(intent)
         }
     }
 }
