@@ -22,5 +22,9 @@ class HomePage : AppCompatActivity() {
         findViewById<View>(R.id.appointmentCard).setOnClickListener {
             startActivity(Intent(this, DoctorAppointment::class.java))
         }
+
+        findViewById<View>(R.id.medicineCard).setOnClickListener {
+            startActivity(Intent(this, Medicinemanage1Page::class.java))
+        }
     }
 }

@@ -44,6 +44,7 @@
     <string name="time_placeholder">-- : -- : --</string>
     <string name="time_8am">08:00 AM</string>
     <string name="update">Update</string>
+    <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="date_label">Date</string>
     <string name="date_placeholder">YYYY-MM-DD</string>

@@ -1,5 +1,7 @@
 package com.theekshana.mediapp
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
@@ -13,6 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.Calendar
+import java.util.Locale
 
 class Medicinemanage1Page : AppCompatActivity() {
 
@@ -53,6 +57,15 @@ class Medicinemanage1Page : AppCompatActivity() {
         addButton = findViewById(R.id.addButton)
         updateButton = findViewById(R.id.updateButton)
         medicinesRecyclerView = findViewById(R.id.medicinesRecyclerView)
+
+        // Make Date and Time inputs non-editable manually
+        medicineTimeInput.isFocusable = false
+        medicineTimeInput.isClickable = true
+        medicineDateInput.isFocusable = false
+        medicineDateInput.isClickable = true
+
+        medicineTimeInput.setOnClickListener { showTimePicker() }
+        medicineDateInput.setOnClickListener { showDatePicker() }
 
         repository = MedicineRepository(this)
 
@@ -106,6 +119,33 @@ class Medicinemanage1Page : AppCompatActivity() {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showTimePicker() {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(this, { _, selectedHour, selectedMinute ->
+            val formattedTime = String.format(Locale.getDefault(), "%02d:%02d", selectedHour, selectedMinute)
+            medicineTimeInput.setText(formattedTime)
+        }, hour, minute, true)
+
+        timePickerDialog.show()
+    }
+
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(this, { _, selectedYear, selectedMonth, selectedDay ->
+            val formattedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
+            medicineDateInput.setText(formattedDate)
+        }, year, month, day)
+
+        datePickerDialog.show()
     }
 
     private fun setupRecyclerView() {
