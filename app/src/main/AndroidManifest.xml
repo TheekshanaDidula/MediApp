@@ -101,6 +101,14 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".DoctorAppointment"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AppointmentSuccess"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".MediApp9"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />

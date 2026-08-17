@@ -12,9 +12,11 @@
         android:id="@+id/topBackground"
         android:layout_width="match_parent"
         android:layout_height="140dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/home_top_bg"
         android:backgroundTint="@color/header_bg"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="24dp" />
 
     <ImageView
         android:id="@+id/backButton"
@@ -76,7 +78,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/medicine_manager"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/backButton" />
@@ -103,16 +105,16 @@
                 android:layout_height="wrap_content"
                 android:text="@string/add_new_medicine"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/medicine_name"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/medicineNameInput"
@@ -128,12 +130,12 @@
                 android:inputType="text" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/time_label"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/medicineTimeInput"
@@ -162,9 +164,10 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_gradient"
                     android:backgroundTint="@color/add_btn_bg"
-                    android:text="@string/add_plus"
+                    android:text="+Add"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -178,6 +181,7 @@
                     android:text="@string/update"
                     android:textAllCaps="false"
                     android:textColor="@color/grey_text"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

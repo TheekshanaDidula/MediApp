@@ -1,26 +1,25 @@
 package com.theekshana.mediapp
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class HomePage : AppCompatActivity() {
+class AppointmentSuccess : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_home_page)
+        setContentView(R.layout.activity_appointment_success)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        findViewById<View>(R.id.appointmentCard).setOnClickListener {
-            startActivity(Intent(this, DoctorAppointment::class.java))
+        findViewById<ImageView>(R.id.backButton).setOnClickListener {
+            finish()
         }
     }
 }

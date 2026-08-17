@@ -48,4 +48,23 @@
     <string name="cancel">Cancel</string>
     <string name="enter_medicine_name">Enter medicine name</string>
     <string name="add_plus">+ Add</string>
+    <string name="select_doctor">Select Doctor</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="dr_sanka">Dr. Sanka Perera</string>
+    <string name="dr_kameesha">Dr. kameesha Weern</string>
+    <string name="dr_romesh">Dr. Romesh Suranga</string>
+    <string name="dr_rawanthi">Dr. Rawanthi</string>
+    <string name="cardiologist">Cardiologist</string>
+    <string name="general_physician">General Physician</string>
+    <string name="pediatrician">Pediatrician</string>
+    <string name="date_hint">mm/dd/yyyy</string>
+    <string name="time_09am">09.00 AM</string>
+    <string name="time_10am">10.00 AM</string>
+    <string name="time_11am">11.00 AM</string>
+    <string name="time_02pm">02.00 PM</string>
+    <string name="time_03pm">03.00 PM</string>
+    <string name="time_04pm">04.00 PM</string>
+    <string name="appointment_success">Your Appointment\nis Successfully!</string>
 </resources>
