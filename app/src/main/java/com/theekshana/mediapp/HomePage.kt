@@ -26,5 +26,9 @@ class HomePage : AppCompatActivity() {
         findViewById<View>(R.id.medicineCard).setOnClickListener {
             startActivity(Intent(this, Medicinemanage1Page::class.java))
         }
+
+        findViewById<View>(R.id.profileIcon).setOnClickListener {
+            startActivity(Intent(this, UserProfile::class.java))
+        }
     }
 }

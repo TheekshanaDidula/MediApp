@@ -21,7 +21,6 @@ class SplashActivity : AppCompatActivity() {
             insets
         }
 
-        // Wait for 3 seconds and then move to LoadingActivity
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent)

@@ -46,7 +46,6 @@ class MedicinemanagePage : AppCompatActivity() {
 
         setupRecyclerView()
         
-        // Observe changes from Firebase
         repository.observeMedicines { medicines ->
             medicinesList.clear()
             medicinesList.addAll(medicines)

@@ -115,7 +115,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/instructionText">
 
-        <!-- OTP Box 1 -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/otpCard1"
             android:layout_width="55dp"
@@ -141,7 +140,6 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- OTP Box 2 -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/otpCard2"
             android:layout_width="55dp"
@@ -167,7 +165,6 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- OTP Box 3 -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/otpCard3"
             android:layout_width="55dp"
@@ -193,7 +190,6 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- OTP Box 4 -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/otpCard4"
             android:layout_width="55dp"
@@ -219,7 +215,6 @@
                 tools:ignore="LabelFor" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- OTP Box 5 -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/otpCard5"
             android:layout_width="55dp"

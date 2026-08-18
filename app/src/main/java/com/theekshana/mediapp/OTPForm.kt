@@ -31,7 +31,6 @@ class OTPForm : AppCompatActivity() {
 
         val confirmButton = findViewById<Button>(R.id.confirmButton)
         confirmButton.setOnClickListener {
-            // After OTP confirmation, go to ConfirmForm (Password entry)
             val intent = Intent(this, ConfirmForm::class.java)
             intent.putExtra("USERNAME", username)
             intent.putExtra("EMAIL", email)

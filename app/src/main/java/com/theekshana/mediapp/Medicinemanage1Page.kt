@@ -50,7 +50,6 @@ class Medicinemanage1Page : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Initialize Views
         medicineNameInput = findViewById(R.id.medicineNameInput)
         medicineTimeInput = findViewById(R.id.medicineTimeInput)
         medicineDateInput = findViewById(R.id.medicineDateInput)
@@ -58,7 +57,6 @@ class Medicinemanage1Page : AppCompatActivity() {
         updateButton = findViewById(R.id.updateButton)
         medicinesRecyclerView = findViewById(R.id.medicinesRecyclerView)
 
-        // Make Date and Time inputs non-editable manually
         medicineTimeInput.isFocusable = false
         medicineTimeInput.isClickable = true
         medicineDateInput.isFocusable = false
@@ -71,7 +69,6 @@ class Medicinemanage1Page : AppCompatActivity() {
 
         setupRecyclerView()
 
-        // Observe real-time changes from Firebase
         repository.observeMedicines { medicines ->
             medicinesList.clear()
             medicinesList.addAll(medicines)
@@ -156,7 +153,6 @@ class Medicinemanage1Page : AppCompatActivity() {
                 medicineDateInput.setText(medicine.date)
                 editingMedicineId = medicine.id
                 
-                // Highlight update button
                 updateButton.backgroundTintList = ContextCompat.getColorStateList(this, R.color.update_btn)
                 updateButton.setTextColor(ContextCompat.getColor(this, R.color.white))
             },

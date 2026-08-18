@@ -51,7 +51,6 @@ class LoginForm : AppCompatActivity() {
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 userRepository.loginUser(username, password) { success, user ->
                     if (success && user != null) {
-                        // Save username in SharedPreferences for session
                         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                         sharedPref.edit().putString("CURRENT_USER", username).apply()
 

@@ -21,7 +21,6 @@ class LoadingActivity : AppCompatActivity() {
             insets
         }
 
-        // Wait for 2 seconds and then move to LoginForm (or HomePage if logged in)
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, LoginForm::class.java)
             startActivity(intent)

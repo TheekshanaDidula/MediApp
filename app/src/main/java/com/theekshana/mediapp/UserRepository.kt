@@ -6,7 +6,6 @@ class UserRepository {
     private val database = FirebaseDatabase.getInstance().getReference("users")
 
     fun registerUser(user: User, onComplete: (Boolean) -> Unit) {
-        // Use username as key (in a real app, use a unique ID or email hash)
         database.child(user.username).setValue(user)
             .addOnCompleteListener { task ->
                 onComplete(task.isSuccessful)
@@ -27,6 +26,19 @@ class UserRepository {
             }
         }.addOnFailureListener {
             onComplete(false, null)
+        }
+    }
+
+    fun getUser(username: String, onComplete: (User?) -> Unit) {
+        database.child(username).get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                val user = snapshot.getValue(User::class.java)
+                onComplete(user)
+            } else {
+                onComplete(null)
+            }
+        }.addOnFailureListener {
+            onComplete(null)
         }
     }
 }
