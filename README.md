@@ -76,4 +76,4 @@ com.theekshana.mediapp
 
 1. **Clone the Repository:**
    ```bash
-   git clone [https://github.com/your-username/MediCare-Plus.git](https://github.com/your-username/MediCare-Plus.git)
+   git clone https://github.com/TheekshanaDidula/MediApp.git
